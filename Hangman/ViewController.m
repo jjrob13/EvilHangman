@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WordFinder.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [[WordFinder alloc] initWithContentsOfFile:@"small.plist"];
+    
 }
 
 - (void)didReceiveMemoryWarning
