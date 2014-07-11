@@ -114,7 +114,7 @@
     //assign the updatedWordArray to the wordArray property
     self.wordArray = updatedWordArray;
     
-    
+    character;
     
     //return the value of where the character should be displayed
     //or nil if it should not be displayed.
@@ -130,7 +130,7 @@
     //iterates through wordArray and counts the number
     //of words with the desired char at the desired index
     for(NSString *word in self.wordArray) {
-        if ([word characterAtIndex:index] == character) {
+        if ([word characterAtIndex:index] == character && [self word:word DoesNotHaveCharacter:character ExceptAtIndex:index]) {
             numberOfWordsWithCharAtCorrectIndex++;
         }
     }
@@ -155,16 +155,20 @@
 -(NSMutableArray*)getEquivalentPartitionForWordsContainingCharacter:(char)character atIndex:(int)index {
     NSMutableArray *resultingPartition = [[NSMutableArray alloc] init];
     
-    //remove words without the desired character at the desired index
+    //add words with the desired character at the desired index
     for (NSString *word in self.wordArray) {
-        if ([word characterAtIndex:index] == character) {
+        
+        //This if statement passes if the word has the character at th correct index
+        //and the word does not have the character at any other index
+        if ([word characterAtIndex:index] == character && [self word:word DoesNotHaveCharacter:character ExceptAtIndex:index]) {
             [resultingPartition addObject:word];
         }
     }
     
-    //copy all words to resulting partition
     
     
+    
+    //return resultingPartition
     return resultingPartition;
 }
 
@@ -200,5 +204,20 @@
 -(NSNumber *)updateListForNewCharacter:(char)character {
     
     return [self updateWordsListWithLargestEquivalentPartitionForCharacter:character];
+}
+
+
+//This method checks to see if a character is repeated in a word
+-(BOOL)word:(NSString*)word DoesNotHaveCharacter:(char)character ExceptAtIndex:(int)index {
+    BOOL result = YES;
+    for (int i = 0; i < word.length; i++) {
+        if ([word characterAtIndex:i] == character && i != index) {
+            result = NO;
+        }
+    }
+    
+    return result;
+    
+    
 }
 @end
