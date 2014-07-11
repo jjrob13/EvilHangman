@@ -7,14 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#define WORDSFILE @"small.plist"
+#define WORDSFILE @"words.plist"
 
 @interface WordFinder : NSObject
 
 @property (strong) NSMutableArray *wordArray;
 @property int lengthOfWord;
 
--(void)initWithContentsOfFile:(NSString *)filePath;
+-(id)initWithContentsOfFile:(NSString *)filePath;
 
--(void)initWithLengthOfWord:(int)len;
+-(id)initWithLengthOfWord:(int)len;
+
+-(NSNumber*)updateListForNewCharacter:(char)character;
+
 @end

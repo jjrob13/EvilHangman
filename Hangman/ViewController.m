@@ -19,7 +19,25 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [[WordFinder alloc] initWithLengthOfWord:3];
+    WordFinder *wordController = [[WordFinder alloc] initWithLengthOfWord:4];
+    
+    NSNumber *index = [wordController updateListForNewCharacter:'R'];
+    index = [wordController updateListForNewCharacter:'B'];
+    index = [wordController updateListForNewCharacter:'G'];
+    index = [wordController updateListForNewCharacter:'I'];
+    index = [wordController updateListForNewCharacter:'A'];
+    index = [wordController updateListForNewCharacter:'E'];
+    index = [wordController updateListForNewCharacter:'O'];
+    index = [wordController updateListForNewCharacter:'U'];
+    index = [wordController updateListForNewCharacter:'Q'];
+    index = [wordController updateListForNewCharacter:'H'];
+    index = [wordController updateListForNewCharacter:'P'];
+    index = [wordController updateListForNewCharacter:'L'];
+    index = [wordController updateListForNewCharacter:'T'];
+    index = [wordController updateListForNewCharacter:'S'];
+    index = [wordController updateListForNewCharacter:'C'];
+
+
     
 }
 
