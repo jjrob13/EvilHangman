@@ -10,14 +10,39 @@
 
 @implementation WordFinder
 
+-(void)initWithLengthOfWord:(int)length {
+    //Populate word array
+    [self initWithContentsOfFile:WORDSFILE];
+    self.lengthOfWord = length;
+    
+    //delete all words that do not have correct length
+    NSMutableArray *itemsToRemove = [[NSMutableArray alloc] init];
+    for(NSString* word in self.wordArray){
+        if (word.length != self.lengthOfWord) {
+            
+            //populate itemsToRemove with the words of incorrect length
+            [itemsToRemove addObject:word];
+        }
+        
+    }
+    
+    //Use itemsToRemove to delete words of incorrect length
+    [self.wordArray removeObjectsInArray:itemsToRemove];
+    
+    
+    
+}
+
+
 -(void)initWithContentsOfFile:(NSString *)fileName {
     
     
     NSString *fullPathToFile = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:[fileName pathExtension]];
     
-    self.words = [[NSMutableArray alloc] initWithContentsOfFile:fullPathToFile];
+    self.wordArray = [[NSMutableArray alloc] initWithContentsOfFile:fullPathToFile];
     
 }
+
 
 
 

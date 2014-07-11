@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [[WordFinder alloc] initWithContentsOfFile:@"small.plist"];
+    [[WordFinder alloc] initWithLengthOfWord:3];
     
 }
 

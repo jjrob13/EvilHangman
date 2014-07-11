@@ -466,6 +466,7 @@
 				685FAF3D196ECFE0008CF754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		685FAF3E196ECFE0008CF754 /* Build configuration list for PBXNativeTarget "HangmanTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +475,7 @@
 				685FAF40196ECFE0008CF754 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
