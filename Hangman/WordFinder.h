@@ -13,6 +13,7 @@
 
 @property (strong) NSMutableArray *wordArray;
 @property int lengthOfWord;
+@property NSMutableString *previouslyGuessedCharacters;
 
 -(id)initWithContentsOfFile:(NSString *)filePath;
 
@@ -20,4 +21,5 @@
 
 -(NSNumber*)updateListForNewCharacter:(char)character;
 
+-(BOOL)userWinsTheGame;
 @end

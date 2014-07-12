@@ -47,6 +47,7 @@
         NSString *fullPathToFile = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:[fileName pathExtension]];
         
         self.wordArray = [[NSMutableArray alloc] initWithContentsOfFile:fullPathToFile];
+        self.previouslyGuessedCharacters = [[NSMutableString alloc] init];
         
     }
     return self;
@@ -114,6 +115,7 @@
     //assign the updatedWordArray to the wordArray property
     self.wordArray = updatedWordArray;
     
+    [self.previouslyGuessedCharacters appendString:[NSString stringWithFormat:@"%c", character]];
     character;
     
     //return the value of where the character should be displayed
@@ -219,5 +221,39 @@
     return result;
     
     
+}
+
+-(BOOL)userWinsTheGame {
+    BOOL result = NO;
+    if (self.wordArray.count == 1 && [self allLettersInWordHaveBeenGuessedUsingWord:self.wordArray[0]]) {
+        result = YES;
+    }
+    
+    return result;
+}
+
+-(BOOL)allLettersInWordHaveBeenGuessedUsingWord:(NSString *)word {
+    BOOL result = YES;
+    //check to see if each character
+    for (int i = 0; i < word.length; i++) {
+        if (![self userHasPreviouslyGuessedCharacter:[word characterAtIndex:i]]) {
+            result = NO;
+            break;
+        }
+    }
+    
+    return result;
+}
+
+-(BOOL)userHasPreviouslyGuessedCharacter:(char)character {
+    BOOL result = NO;
+    for (int i = 0; i < self.previouslyGuessedCharacters.length; i++) {
+        if (character == [self.previouslyGuessedCharacters characterAtIndex:i]) {
+            result = true;
+            break;
+        }
+    }
+    
+    return result;
 }
 @end
