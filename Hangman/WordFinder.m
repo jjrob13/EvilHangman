@@ -20,9 +20,16 @@
         //Populate word array
         self.lengthOfWord = length;
         
+        self.currentStateOfGuessedWord = [[NSMutableString alloc] init];
+        
+        //fill currentStateOfGuessedWord with underscores
+        for (int i = 0; i < self.lengthOfWord; i++) {
+            [self.currentStateOfGuessedWord appendString:@"_"];
+        }
+        
         //delete all words that do not have correct length
         NSMutableArray *itemsToRemove = [[NSMutableArray alloc] init];
-        for(NSString* word in self.wordArray){
+        for(NSString* word in self.remainingWordList){
             if (word.length != self.lengthOfWord) {
                 
                 //populate itemsToRemove with the words of incorrect length
@@ -32,7 +39,7 @@
         }
         
         //Use itemsToRemove to delete words of incorrect length
-        [self.wordArray removeObjectsInArray:itemsToRemove];
+        [self.remainingWordList removeObjectsInArray:itemsToRemove];
         
     }
     return self;
@@ -46,7 +53,7 @@
 
         NSString *fullPathToFile = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:[fileName pathExtension]];
         
-        self.wordArray = [[NSMutableArray alloc] initWithContentsOfFile:fullPathToFile];
+        self.remainingWordList = [[NSMutableArray alloc] initWithContentsOfFile:fullPathToFile];
         self.previouslyGuessedCharacters = [[NSMutableString alloc] init];
         
     }
@@ -113,7 +120,7 @@
     
     
     //assign the updatedWordArray to the wordArray property
-    self.wordArray = updatedWordArray;
+    self.remainingWordList = updatedWordArray;
     
     [self.previouslyGuessedCharacters appendString:[NSString stringWithFormat:@"%c", character]];
     character;
@@ -131,7 +138,7 @@
     
     //iterates through wordArray and counts the number
     //of words with the desired char at the desired index
-    for(NSString *word in self.wordArray) {
+    for(NSString *word in self.remainingWordList) {
         if ([word characterAtIndex:index] == character && [self word:word DoesNotHaveCharacter:character ExceptAtIndex:index]) {
             numberOfWordsWithCharAtCorrectIndex++;
         }
@@ -144,7 +151,7 @@
 -(NSNumber *)getNumberOfWordsNotContainingCharacter:(char)character {
     int numberOfWordsWithoutChar = 0;
     
-    for(NSString *word in self.wordArray) {
+    for(NSString *word in self.remainingWordList) {
         if (![self string:word ContainsCharacter:character]) {
             numberOfWordsWithoutChar++;
         }
@@ -158,7 +165,7 @@
     NSMutableArray *resultingPartition = [[NSMutableArray alloc] init];
     
     //add words with the desired character at the desired index
-    for (NSString *word in self.wordArray) {
+    for (NSString *word in self.remainingWordList) {
         
         //This if statement passes if the word has the character at th correct index
         //and the word does not have the character at any other index
@@ -177,7 +184,7 @@
 -(NSMutableArray*)getEquivalentPartitionForWordsNotContainingCharacter:(char)character {
     NSMutableArray *resultingPartition = [[NSMutableArray alloc] init];
     
-    for(NSString *word in self.wordArray) {
+    for(NSString *word in self.remainingWordList) {
         if (![self string:word ContainsCharacter:character]) {
             [resultingPartition addObject:word];
         }
@@ -225,7 +232,7 @@
 
 -(BOOL)userWinsTheGame {
     BOOL result = NO;
-    if (self.wordArray.count == 1 && [self allLettersInWordHaveBeenGuessedUsingWord:self.wordArray[0]]) {
+    if (self.remainingWordList.count == 1 && [self allLettersInWordHaveBeenGuessedUsingWord:self.remainingWordList[0]]) {
         result = YES;
     }
     

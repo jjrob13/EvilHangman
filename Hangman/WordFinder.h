@@ -11,11 +11,10 @@
 
 @interface WordFinder : NSObject
 
-@property (strong) NSMutableArray *wordArray;
+@property (strong) NSMutableArray *remainingWordList;
+@property (strong) NSMutableString *currentStateOfGuessedWord;
 @property int lengthOfWord;
 @property NSMutableString *previouslyGuessedCharacters;
-
--(id)initWithContentsOfFile:(NSString *)filePath;
 
 -(id)initWithLengthOfWord:(int)len;
 

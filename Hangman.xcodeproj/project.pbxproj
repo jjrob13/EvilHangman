@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680156DE197224F9000C7AA6 /* EquivalentPartition.m in Sources */ = {isa = PBXBuildFile; fileRef = 680156DD197224F9000C7AA6 /* EquivalentPartition.m */; };
 		685FAF0D196ECFE0008CF754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF0C196ECFE0008CF754 /* Foundation.framework */; };
 		685FAF0F196ECFE0008CF754 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF0E196ECFE0008CF754 /* CoreGraphics.framework */; };
 		685FAF11196ECFE0008CF754 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF10196ECFE0008CF754 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		680156DC197224F9000C7AA6 /* EquivalentPartition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquivalentPartition.h; sourceTree = "<group>"; };
+		680156DD197224F9000C7AA6 /* EquivalentPartition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquivalentPartition.m; sourceTree = "<group>"; };
 		685FAF09196ECFE0008CF754 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685FAF0C196ECFE0008CF754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		685FAF0E196ECFE0008CF754 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,6 +129,8 @@
 				685FAF22196ECFE0008CF754 /* ViewController.m */,
 				685FAF41196ED10E008CF754 /* WordFinder.h */,
 				685FAF42196ED10E008CF754 /* WordFinder.m */,
+				680156DC197224F9000C7AA6 /* EquivalentPartition.h */,
+				680156DD197224F9000C7AA6 /* EquivalentPartition.m */,
 				685FAF24196ECFE0008CF754 /* Images.xcassets */,
 				685FAF13196ECFE0008CF754 /* Supporting Files */,
 			);
@@ -265,6 +270,7 @@
 				685FAF23196ECFE0008CF754 /* ViewController.m in Sources */,
 				685FAF1D196ECFE0008CF754 /* AppDelegate.m in Sources */,
 				685FAF19196ECFE0008CF754 /* main.m in Sources */,
+				680156DE197224F9000C7AA6 /* EquivalentPartition.m in Sources */,
 				685FAF43196ED10E008CF754 /* WordFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

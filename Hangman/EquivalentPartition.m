@@ -1,13 +1,89 @@
-//
+
 //  EquivalentPartition.m
 //  Hangman
 //
-//  Created by John Robertson on 7/10/14.
+//  Created by John Robertson on 7/12/14.
 //  Copyright (c) 2014 John Robertson. All rights reserved.
 //
 
 #import "EquivalentPartition.h"
 
 @implementation EquivalentPartition
+
+-(id)initWithCharacter:(char)character andIndices:(NSArray *)indices andWords:(NSArray *)words {
+    if (self = [self init]) {
+        
+        self.indices = indices;
+        self.characterForEquivalentPartition = character;
+        
+        
+        self.wordsInEquivalentPartition = [self getWordsWithCharacter:self.characterForEquivalentPartition atIndices:indices fromWordList:words];
+        
+        self.sizeOfPartition = [self.wordsInEquivalentPartition count];
+    }
+    
+    return self;
+}
+
+
+-(NSMutableArray*)getWordsWithCharacter:(char)character atIndices:(NSArray*)indices fromWordList:(NSArray*)words {
+    
+    NSMutableArray *resultingArrayOfWords = [[NSMutableArray alloc] init];
+    
+    //case for when the specified character is not present in the word
+    if (indices == nil) {
+        
+        //check to see if the character is absent from the word
+        for (NSString* word in words) {
+            if ([self word:word DoesNotContainChar:character]) {
+                [resultingArrayOfWords addObject:word];
+            }
+        }
+        
+        
+    }//end if statement
+    
+    //Case where indices is not nil and the character exists somewhere in the word
+    else {
+    
+        
+        for (NSString *word in words) {
+            //Set default bool value to true, check indices of word if they don't match
+            //with the desired character set value to false and break
+            BOOL charExistsAtDesiredIndices = YES;
+            for (NSNumber* index in indices) {
+                if (![word characterAtIndex:[index intValue]]) {
+                    charExistsAtDesiredIndices = NO;
+                    break;
+                }
+            }
+            //check to see if the char is at the desired indices, if so add to the resultingArray
+            if (charExistsAtDesiredIndices) {
+                [resultingArrayOfWords addObject:word];
+            }
+            
+            
+            
+        } //end outer for loop
+        
+    } //end else statement
+    
+    return resultingArrayOfWords;
+}
+
+
+-(BOOL)word:(NSString*)word DoesNotContainChar:(char) character {
+    
+    BOOL wordContainsChar = NO;
+
+    for (int i = 0; i < word.length ; i++) {
+        if ([word characterAtIndex:i] == character) {
+            wordContainsChar = YES;
+            break;
+        }
+    }
+    
+    return wordContainsChar;
+}
 
 @end

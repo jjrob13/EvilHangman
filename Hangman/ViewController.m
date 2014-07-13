@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    WordFinder *wordController = [[WordFinder alloc] initWithLengthOfWord:4];
+    WordFinder *wordController = [[WordFinder alloc] initWithLengthOfWord:5];
     
     NSNumber *index = [wordController updateListForNewCharacter:'R'];
     index = [wordController updateListForNewCharacter:'B'];
@@ -45,6 +45,9 @@
     index = [wordController updateListForNewCharacter:'J'];
 
     NSLog(@"%d", [wordController userWinsTheGame]);
+    index = [wordController updateListForNewCharacter:'Z'];
+    
+    index = [wordController updateListForNewCharacter:'M'];
     
 }
 
