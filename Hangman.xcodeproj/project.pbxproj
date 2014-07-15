@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		680156DE197224F9000C7AA6 /* EquivalentPartition.m in Sources */ = {isa = PBXBuildFile; fileRef = 680156DD197224F9000C7AA6 /* EquivalentPartition.m */; };
+		683F5F991975CA3D00FC7AA8 /* HomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F5F981975CA3D00FC7AA8 /* HomeScreenViewController.m */; };
+		683F5F9C1975D39700FC7AA8 /* LossScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F5F9B1975D39700FC7AA8 /* LossScreenViewController.m */; };
+		683F5F9F1975DB1C00FC7AA8 /* WinScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 683F5F9E1975DB1C00FC7AA8 /* WinScreenViewController.m */; };
 		685FAF0D196ECFE0008CF754 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF0C196ECFE0008CF754 /* Foundation.framework */; };
 		685FAF0F196ECFE0008CF754 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF0E196ECFE0008CF754 /* CoreGraphics.framework */; };
 		685FAF11196ECFE0008CF754 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 685FAF10196ECFE0008CF754 /* UIKit.framework */; };
@@ -41,6 +44,12 @@
 /* Begin PBXFileReference section */
 		680156DC197224F9000C7AA6 /* EquivalentPartition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquivalentPartition.h; sourceTree = "<group>"; };
 		680156DD197224F9000C7AA6 /* EquivalentPartition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquivalentPartition.m; sourceTree = "<group>"; };
+		683F5F971975CA3D00FC7AA8 /* HomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenViewController.h; sourceTree = "<group>"; };
+		683F5F981975CA3D00FC7AA8 /* HomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenViewController.m; sourceTree = "<group>"; };
+		683F5F9A1975D39700FC7AA8 /* LossScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LossScreenViewController.h; sourceTree = "<group>"; };
+		683F5F9B1975D39700FC7AA8 /* LossScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LossScreenViewController.m; sourceTree = "<group>"; };
+		683F5F9D1975DB1C00FC7AA8 /* WinScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinScreenViewController.h; sourceTree = "<group>"; };
+		683F5F9E1975DB1C00FC7AA8 /* WinScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WinScreenViewController.m; sourceTree = "<group>"; };
 		685FAF09196ECFE0008CF754 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		685FAF0C196ECFE0008CF754 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		685FAF0E196ECFE0008CF754 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -125,11 +134,17 @@
 		685FAF12196ECFE0008CF754 /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				683F5F971975CA3D00FC7AA8 /* HomeScreenViewController.h */,
+				683F5F981975CA3D00FC7AA8 /* HomeScreenViewController.m */,
 				688E58D019745EDB00C11107 /* CombinationGenerator.h */,
 				688E58D119745EDB00C11107 /* CombinationGenerator.m */,
 				685FAF1B196ECFE0008CF754 /* AppDelegate.h */,
 				685FAF1C196ECFE0008CF754 /* AppDelegate.m */,
 				685FAF1E196ECFE0008CF754 /* Main.storyboard */,
+				683F5F9D1975DB1C00FC7AA8 /* WinScreenViewController.h */,
+				683F5F9E1975DB1C00FC7AA8 /* WinScreenViewController.m */,
+				683F5F9A1975D39700FC7AA8 /* LossScreenViewController.h */,
+				683F5F9B1975D39700FC7AA8 /* LossScreenViewController.m */,
 				685FAF21196ECFE0008CF754 /* ViewController.h */,
 				685FAF22196ECFE0008CF754 /* ViewController.m */,
 				685FAF41196ED10E008CF754 /* WordFinder.h */,
@@ -272,12 +287,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				683F5F9F1975DB1C00FC7AA8 /* WinScreenViewController.m in Sources */,
 				685FAF23196ECFE0008CF754 /* ViewController.m in Sources */,
 				688E58D219745EDB00C11107 /* CombinationGenerator.m in Sources */,
 				685FAF1D196ECFE0008CF754 /* AppDelegate.m in Sources */,
 				685FAF19196ECFE0008CF754 /* main.m in Sources */,
 				680156DE197224F9000C7AA6 /* EquivalentPartition.m in Sources */,
+				683F5F9C1975D39700FC7AA8 /* LossScreenViewController.m in Sources */,
 				685FAF43196ED10E008CF754 /* WordFinder.m in Sources */,
+				683F5F991975CA3D00FC7AA8 /* HomeScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

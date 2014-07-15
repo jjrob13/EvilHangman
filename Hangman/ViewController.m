@@ -18,9 +18,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    self.wordFinder = [[WordFinder alloc] initWithLengthOfWord:5];
+    self.wordFinder = [[WordFinder alloc] initWithLengthOfWord:self.userSelectedWordLength];
     
-    [self updateWordLabel];
+    //change font size depending on length of word
+    self.onScreenWordLabel.font = [UIFont systemFontOfSize:(29 - (.6 * self.wordFinder.lengthOfWord))];
+    self.navigationController.navigationBarHidden = YES;
+
+    
+    [self updateScreen];
   
     
 }
@@ -34,22 +39,53 @@
 
 - (IBAction)characterGuessed:(UIButton*)sender {
     if (![sender isHidden]) {
-        [self.wordFinder updateListForNewCharacter:[sender.titleLabel.text characterAtIndex:0]];
+
+        
+        
+        //check to see if word was "added" to the word
+        if ([self.wordFinder updateListForNewCharacter:[sender.titleLabel.text characterAtIndex:0]]) {
+            self.guessesRemaining--;
+        }
+        
         [sender setHidden:YES];
-        [self updateWordLabel];
+        
+        //check for a win
+        if ([self.wordFinder userWinsTheGame]) {
+            [self performSegueWithIdentifier:@"segueToWin" sender:self];
+            return;
+        }
+        
+        
+        [self updateScreen];
 
     }
 }
 
 
--(void)updateWordLabel {
+-(void)updateScreen {
     
-    self.onScreenWordLabel.text = @"";
+    if (self.guessesRemaining > 0) {
     
-    for (int i = 0; i < self.wordFinder.lengthOfWord; i++) {
-        ;
-        self.onScreenWordLabel.text = [self.onScreenWordLabel.text stringByAppendingString:[NSString stringWithFormat:@" %c", [self.wordFinder.currentStateOfGuessedWord characterAtIndex:i]]];
-        
+        self.onScreenWordLabel.text = @"";
+        self.guessesRemainingLabel.text = [NSString stringWithFormat:@"%i", self.guessesRemaining];
+        for (int i = 0; i < self.wordFinder.lengthOfWord; i++) {
+            ;
+            self.onScreenWordLabel.text = [self.onScreenWordLabel.text stringByAppendingString:[NSString stringWithFormat:@" %c", [self.wordFinder.currentStateOfGuessedWord characterAtIndex:i]]];
+            
+        }
+    }else {
+        [self performSegueWithIdentifier:@"segueToLoss" sender:self];
+    }
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"segueToLoss"]) {
+        LossScreenViewController *dest = segue.destinationViewController;
+        dest.correctWord = [self.wordFinder getRandomRemainingWord];
+    }else if([segue.identifier isEqualToString:@"segueToWin"]) {
+        WinScreenViewController *dest = segue.destinationViewController;
+        dest.correctWord = self.wordFinder.currentStateOfGuessedWord;
+        dest.remainingGuesses = self.guessesRemaining;
     }
 }
 @end

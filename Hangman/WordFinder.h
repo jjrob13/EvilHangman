@@ -20,7 +20,11 @@
 @property NSArray *combinations;
 -(id)initWithLengthOfWord:(int)len;
 
--(void)updateListForNewCharacter:(char)character;
+
+//returns whether or not the new character is in the word
+-(BOOL)updateListForNewCharacter:(char)character;
 
 -(BOOL)userWinsTheGame;
+
+-(NSString*)getRandomRemainingWord;
 @end

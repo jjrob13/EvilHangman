@@ -66,7 +66,7 @@
 
 
 
--(void)updateWordsListWithLargestEquivalentPartitionForCharacter:(char)character{
+-(BOOL)updateWordsListWithLargestEquivalentPartitionForCharacter:(char)character{
 
     //There are 2^n possible combinations of character locations for a given character and word.
     //n is the length of the word.  n choose 0 + n choose 1 + n choose 2 + ... + n choose n yields
@@ -94,6 +94,13 @@
     
     self.remainingWordList = largestPartition.wordsInEquivalentPartition;
     
+    
+    //checking to see if character was "added" to the word
+    if (largestPartition.indices != nil) {
+        return false;
+    }
+    
+    return true;
 }
 
 
@@ -114,14 +121,14 @@
 
 //returns the index of where the new character was placed or nil
 //if the character is not included
--(void)updateListForNewCharacter:(char)character {
+-(BOOL)updateListForNewCharacter:(char)character {
     
-    [self updateWordsListWithLargestEquivalentPartitionForCharacter:character];
+    return [self updateWordsListWithLargestEquivalentPartitionForCharacter:character];
 }
 
 -(BOOL)userWinsTheGame {
     BOOL result = NO;
-    if (self.remainingWordList.count == 1 && [self allLettersInWordHaveBeenGuessedUsingWord:self.remainingWordList[0]]) {
+    if (![self string:self.currentStateOfGuessedWord ContainsCharacter:'_']) {
         result = YES;
     }
     
@@ -151,5 +158,11 @@
     }
     
     return result;
+}
+
+-(NSString *)getRandomRemainingWord {
+    int indexOfWordToReturn = round(arc4random() % self.remainingWordList.count);
+    
+    return [self.remainingWordList objectAtIndex:indexOfWordToReturn];
 }
 @end

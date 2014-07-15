@@ -10,9 +10,17 @@
 
 @implementation CombinationGenerator
 
+
+//if the size of the word is greater than 5, only find combinations up to 5.
 +(NSArray *)getAllCombinationsForLength:(int)len {
+    int lengthToCheck;
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (int i = 1; i <= len; i++) {
+    if (len > 5) {
+        lengthToCheck = 5;
+    }else {
+        lengthToCheck = len;
+    }
+    for (int i = 1; i <= lengthToCheck; i++) {
         [result addObjectsFromArray:[self getCombinationsForN:len chooseM:i]];
     }
     
