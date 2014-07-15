@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "WordFinder.h"
 @interface ViewController ()
 
 @end
@@ -19,39 +18,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.wordFinder = [[WordFinder alloc] initWithLengthOfWord:5];
     
-    
-    WordFinder *wordController = [[WordFinder alloc] initWithLengthOfWord:5];
-    
-    [wordController updateListForNewCharacter:'R'];
-    [wordController updateListForNewCharacter:'B'];
-    [wordController updateListForNewCharacter:'G'];
-    [wordController updateListForNewCharacter:'I'];
-    [wordController updateListForNewCharacter:'A'];
-    [wordController updateListForNewCharacter:'E'];
-    [wordController updateListForNewCharacter:'O'];
-    [wordController updateListForNewCharacter:'U'];
-    [wordController updateListForNewCharacter:'Q'];
-    [wordController updateListForNewCharacter:'H'];
-    [wordController updateListForNewCharacter:'P'];
-    [wordController updateListForNewCharacter:'L'];
-    [wordController updateListForNewCharacter:'T'];
-    [wordController updateListForNewCharacter:'S'];
-    [wordController updateListForNewCharacter:'C'];
-    [wordController updateListForNewCharacter:'D'];
-    [wordController updateListForNewCharacter:'F'];
-    [wordController updateListForNewCharacter:'N'];
-    [wordController updateListForNewCharacter:'K'];
-    NSLog(@"%d", [wordController userWinsTheGame]);
-
-    [wordController updateListForNewCharacter:'J'];
-
-    NSLog(@"%d", [wordController userWinsTheGame]);
-    [wordController updateListForNewCharacter:'Z'];
-    
-    [wordController updateListForNewCharacter:'M'];
+    [self updateWordLabel];
+  
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -59,4 +32,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)characterGuessed:(UIButton*)sender {
+    if (![sender isHidden]) {
+        [self.wordFinder updateListForNewCharacter:[sender.titleLabel.text characterAtIndex:0]];
+        [sender setHidden:YES];
+        [self updateWordLabel];
+
+    }
+}
+
+
+-(void)updateWordLabel {
+    
+    self.onScreenWordLabel.text = @"";
+    
+    for (int i = 0; i < self.wordFinder.lengthOfWord; i++) {
+        ;
+        self.onScreenWordLabel.text = [self.onScreenWordLabel.text stringByAppendingString:[NSString stringWithFormat:@" %c", [self.wordFinder.currentStateOfGuessedWord characterAtIndex:i]]];
+        
+    }
+}
 @end

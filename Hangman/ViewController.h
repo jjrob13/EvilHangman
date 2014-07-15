@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WordFinder.h"
 
 @interface ViewController : UIViewController
-
+- (IBAction)characterGuessed:(UIButton*)sender;
+@property (strong, nonatomic) IBOutlet UILabel *onScreenWordLabel;
+@property WordFinder *wordFinder;
 @end
