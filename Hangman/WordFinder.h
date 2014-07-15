@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EquivalentPartition.h"
+#import "CombinationGenerator.h"
 #define WORDSFILE @"words.plist"
 
 @interface WordFinder : NSObject
@@ -15,10 +17,10 @@
 @property (strong) NSMutableString *currentStateOfGuessedWord;
 @property int lengthOfWord;
 @property NSMutableString *previouslyGuessedCharacters;
-
+@property NSArray *combinations;
 -(id)initWithLengthOfWord:(int)len;
 
--(NSNumber*)updateListForNewCharacter:(char)character;
+-(void)updateListForNewCharacter:(char)character;
 
 -(BOOL)userWinsTheGame;
 @end

@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "WordFinder.h"
-
 @interface ViewController ()
 
 @end
@@ -19,35 +18,38 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    
+    
     WordFinder *wordController = [[WordFinder alloc] initWithLengthOfWord:5];
     
-    NSNumber *index = [wordController updateListForNewCharacter:'R'];
-    index = [wordController updateListForNewCharacter:'B'];
-    index = [wordController updateListForNewCharacter:'G'];
-    index = [wordController updateListForNewCharacter:'I'];
-    index = [wordController updateListForNewCharacter:'A'];
-    index = [wordController updateListForNewCharacter:'E'];
-    index = [wordController updateListForNewCharacter:'O'];
-    index = [wordController updateListForNewCharacter:'U'];
-    index = [wordController updateListForNewCharacter:'Q'];
-    index = [wordController updateListForNewCharacter:'H'];
-    index = [wordController updateListForNewCharacter:'P'];
-    index = [wordController updateListForNewCharacter:'L'];
-    index = [wordController updateListForNewCharacter:'T'];
-    index = [wordController updateListForNewCharacter:'S'];
-    index = [wordController updateListForNewCharacter:'C'];
-    index = [wordController updateListForNewCharacter:'D'];
-    index = [wordController updateListForNewCharacter:'F'];
-    index = [wordController updateListForNewCharacter:'N'];
-    index = [wordController updateListForNewCharacter:'K'];
+    [wordController updateListForNewCharacter:'R'];
+    [wordController updateListForNewCharacter:'B'];
+    [wordController updateListForNewCharacter:'G'];
+    [wordController updateListForNewCharacter:'I'];
+    [wordController updateListForNewCharacter:'A'];
+    [wordController updateListForNewCharacter:'E'];
+    [wordController updateListForNewCharacter:'O'];
+    [wordController updateListForNewCharacter:'U'];
+    [wordController updateListForNewCharacter:'Q'];
+    [wordController updateListForNewCharacter:'H'];
+    [wordController updateListForNewCharacter:'P'];
+    [wordController updateListForNewCharacter:'L'];
+    [wordController updateListForNewCharacter:'T'];
+    [wordController updateListForNewCharacter:'S'];
+    [wordController updateListForNewCharacter:'C'];
+    [wordController updateListForNewCharacter:'D'];
+    [wordController updateListForNewCharacter:'F'];
+    [wordController updateListForNewCharacter:'N'];
+    [wordController updateListForNewCharacter:'K'];
     NSLog(@"%d", [wordController userWinsTheGame]);
 
-    index = [wordController updateListForNewCharacter:'J'];
+    [wordController updateListForNewCharacter:'J'];
 
     NSLog(@"%d", [wordController userWinsTheGame]);
-    index = [wordController updateListForNewCharacter:'Z'];
+    [wordController updateListForNewCharacter:'Z'];
     
-    index = [wordController updateListForNewCharacter:'M'];
+    [wordController updateListForNewCharacter:'M'];
     
 }
 

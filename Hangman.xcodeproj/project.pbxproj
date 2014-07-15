@@ -24,6 +24,7 @@
 		685FAF38196ECFE0008CF754 /* HangmanTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 685FAF37196ECFE0008CF754 /* HangmanTests.m */; };
 		685FAF43196ED10E008CF754 /* WordFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 685FAF42196ED10E008CF754 /* WordFinder.m */; };
 		685FAF45196ED162008CF754 /* small.plist in Resources */ = {isa = PBXBuildFile; fileRef = 685FAF44196ED162008CF754 /* small.plist */; };
+		688E58D219745EDB00C11107 /* CombinationGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 688E58D119745EDB00C11107 /* CombinationGenerator.m */; };
 		68FF2DFD196F82CD00095E66 /* words.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF2DFC196F82CD00095E66 /* words.plist */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		685FAF41196ED10E008CF754 /* WordFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordFinder.h; sourceTree = "<group>"; };
 		685FAF42196ED10E008CF754 /* WordFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordFinder.m; sourceTree = "<group>"; };
 		685FAF44196ED162008CF754 /* small.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = small.plist; sourceTree = "<group>"; };
+		688E58D019745EDB00C11107 /* CombinationGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombinationGenerator.h; sourceTree = "<group>"; };
+		688E58D119745EDB00C11107 /* CombinationGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombinationGenerator.m; sourceTree = "<group>"; };
 		68FF2DFC196F82CD00095E66 /* words.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = words.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +125,8 @@
 		685FAF12196ECFE0008CF754 /* Hangman */ = {
 			isa = PBXGroup;
 			children = (
+				688E58D019745EDB00C11107 /* CombinationGenerator.h */,
+				688E58D119745EDB00C11107 /* CombinationGenerator.m */,
 				685FAF1B196ECFE0008CF754 /* AppDelegate.h */,
 				685FAF1C196ECFE0008CF754 /* AppDelegate.m */,
 				685FAF1E196ECFE0008CF754 /* Main.storyboard */,
@@ -268,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				685FAF23196ECFE0008CF754 /* ViewController.m in Sources */,
+				688E58D219745EDB00C11107 /* CombinationGenerator.m in Sources */,
 				685FAF1D196ECFE0008CF754 /* AppDelegate.m in Sources */,
 				685FAF19196ECFE0008CF754 /* main.m in Sources */,
 				680156DE197224F9000C7AA6 /* EquivalentPartition.m in Sources */,

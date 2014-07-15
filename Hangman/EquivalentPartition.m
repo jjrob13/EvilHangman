@@ -35,7 +35,7 @@
         
         //check to see if the character is absent from the word
         for (NSString* word in words) {
-            if ([self word:word DoesNotContainChar:character]) {
+            if (![self word:word ContainChar:character]) {
                 [resultingArrayOfWords addObject:word];
             }
         }
@@ -48,17 +48,8 @@
     
         
         for (NSString *word in words) {
-            //Set default bool value to true, check indices of word if they don't match
-            //with the desired character set value to false and break
-            BOOL charExistsAtDesiredIndices = YES;
-            for (NSNumber* index in indices) {
-                if (![word characterAtIndex:[index intValue]]) {
-                    charExistsAtDesiredIndices = NO;
-                    break;
-                }
-            }
             //check to see if the char is at the desired indices, if so add to the resultingArray
-            if (charExistsAtDesiredIndices) {
+            if ([self character:character ExistsAtIndices:indices InWord:word]) {
                 [resultingArrayOfWords addObject:word];
             }
             
@@ -72,7 +63,7 @@
 }
 
 
--(BOOL)word:(NSString*)word DoesNotContainChar:(char) character {
+-(BOOL)word:(NSString*)word ContainChar:(char) character {
     
     BOOL wordContainsChar = NO;
 
@@ -84,6 +75,18 @@
     }
     
     return wordContainsChar;
+}
+
+-(BOOL)character:(char)character ExistsAtIndices:(NSArray*)indices InWord:(NSString*)word{
+    BOOL charExistsAtAllIndices = YES;
+    for(NSNumber* index in indices) {
+        if ([word characterAtIndex:[index integerValue]] != character) {
+            charExistsAtAllIndices = NO;
+            break;
+        }
+    }
+    
+    return charExistsAtAllIndices;
 }
 
 @end
