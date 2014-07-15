@@ -49,7 +49,7 @@
         
         for (NSString *word in words) {
             //check to see if the char is at the desired indices, if so add to the resultingArray
-            if ([self character:character ExistsAtIndices:indices InWord:word]) {
+            if ([self character:character ExistsOnlyAtIndices:indices InWord:word]) {
                 [resultingArrayOfWords addObject:word];
             }
             
@@ -77,16 +77,39 @@
     return wordContainsChar;
 }
 
--(BOOL)character:(char)character ExistsAtIndices:(NSArray*)indices InWord:(NSString*)word{
-    BOOL charExistsAtAllIndices = YES;
-    for(NSNumber* index in indices) {
-        if ([word characterAtIndex:[index integerValue]] != character) {
-            charExistsAtAllIndices = NO;
+-(BOOL)character:(char)character ExistsOnlyAtIndices:(NSArray*)indices InWord:(NSString*)word{
+    BOOL charExistsAtCorrectIndices = YES;
+    
+    //make sure the character exists exclusively at the correct indices
+    for(int i = 0; i < word.length; i++) {
+        
+        //check to see if character is in incorrect position in word or character
+        if ([word characterAtIndex:i] == character && ![self index:i IsInIndicesList:indices]) {
+            charExistsAtCorrectIndices = NO;
+            break;
+        }
+        
+        if ([word characterAtIndex:i] != character && [self index:i IsInIndicesList:indices]) {
+            charExistsAtCorrectIndices = NO;
+            break;
+        }
+    }
+
+    
+    return charExistsAtCorrectIndices;
+}
+
+
+-(BOOL)index:(int)index IsInIndicesList:(NSArray*)indices {
+    BOOL result = NO;
+    
+    for (NSNumber* indexInList in indices) {
+        if ([indexInList integerValue] == index) {
+            result = YES;
             break;
         }
     }
     
-    return charExistsAtAllIndices;
+    return result;
 }
-
 @end

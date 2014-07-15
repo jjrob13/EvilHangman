@@ -81,7 +81,8 @@
     for (NSArray* singleIndexCombination in self.combinations) {
         EquivalentPartition *tempPartition = [[EquivalentPartition alloc] initWithCharacter:character andIndices:singleIndexCombination andWords:self.remainingWordList];
         
-        if (tempPartition.sizeOfPartition > largestPartition.sizeOfPartition) {
+        //Choose the larger of the partitions
+        if (tempPartition.sizeOfPartition >= largestPartition.sizeOfPartition) {
             largestPartition = tempPartition;
         }
     }
