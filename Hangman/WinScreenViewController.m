@@ -14,7 +14,9 @@
 -(void)viewDidLoad {
     self.correctWordLabel.text = self.correctWord;
     
+    self.correctWordLabel.font = self.fontForWord;
     self.remainingGuessesLabel.text = [NSString stringWithFormat:@"You had %i guesses remaining", self.remainingGuesses];
+    
 }
 - (IBAction)playAgainButtonPressed:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

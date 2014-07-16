@@ -21,4 +21,8 @@
 
 -(id)initWithCharacter:(char)character andIndices:(NSArray*)indices andWords:(NSArray*)words;
 
+
+-(id)initWithCharacter:(char)character andIndices:(NSArray*)indices;
+
+-(void)addWord:(NSString *)word;
 @end

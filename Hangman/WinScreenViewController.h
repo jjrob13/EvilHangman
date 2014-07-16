@@ -15,7 +15,7 @@
 @property int remainingGuesses;
 @property NSString *correctWord;
 
-
+@property UIFont *fontForWord;
 - (IBAction)playAgainButtonPressed:(id)sender;
 
 @end

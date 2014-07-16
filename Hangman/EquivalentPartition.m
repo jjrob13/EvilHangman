@@ -11,15 +11,23 @@
 @implementation EquivalentPartition
 
 -(id)initWithCharacter:(char)character andIndices:(NSArray *)indices andWords:(NSArray *)words {
-    if (self = [self init]) {
-        
-        self.indices = indices;
-        self.characterForEquivalentPartition = character;
-        
+    if (self = [self initWithCharacter:character andIndices:indices]) {
         
         self.wordsInEquivalentPartition = [self getWordsWithCharacter:self.characterForEquivalentPartition atIndices:indices fromWordList:words];
         
         self.sizeOfPartition = [self.wordsInEquivalentPartition count];
+    }
+    
+    return self;
+}
+
+
+-(id)initWithCharacter:(char)character andIndices:(NSArray *)indices {
+    if (self = [self init]) {
+        self.indices = indices;
+        self.characterForEquivalentPartition = character;
+        self.wordsInEquivalentPartition = [[NSMutableArray alloc] init];
+        self.sizeOfPartition = 0;
     }
     
     return self;
@@ -112,4 +120,11 @@
     
     return result;
 }
+
+
+-(void)addWord:(NSString *)word {
+    [self.wordsInEquivalentPartition addObject:word];
+    self.sizeOfPartition++;
+}
+
 @end

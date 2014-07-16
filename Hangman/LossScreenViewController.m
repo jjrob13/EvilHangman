@@ -13,6 +13,7 @@
 -(void)viewDidLoad {
     self.navigationController.navigationBarHidden = YES;
     self.correctWordLabel.text = self.correctWord;
+    self.correctWordLabel.font = self.fontForWord;
 }
 - (IBAction)playAgainButton:(id)sender {
     [self.navigationController popToRootViewControllerAnimated:YES];

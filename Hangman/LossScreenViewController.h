@@ -10,7 +10,7 @@
 
 @interface LossScreenViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *correctWordLabel;
-
+@property UIFont *fontForWord;
 @property NSString *correctWord;
 - (IBAction)playAgainButton:(id)sender;
 

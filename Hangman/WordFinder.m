@@ -43,7 +43,7 @@
         
         
         //populate the combinations array
-        self.combinations = [CombinationGenerator getAllCombinationsForLength:length];
+        //self.combinations = [CombinationGenerator getAllCombinationsForLength:length];
         
     }
     return self;
@@ -68,39 +68,77 @@
 
 -(BOOL)updateWordsListWithLargestEquivalentPartitionForCharacter:(char)character{
 
-    //There are 2^n possible combinations of character locations for a given character and word.
-    //n is the length of the word.  n choose 0 + n choose 1 + n choose 2 + ... + n choose n yields
-    //the 2^n figure that I previously stated.
-    EquivalentPartition *largestPartition;
+    NSMutableArray *equivalentPartitionArray = [[NSMutableArray alloc] init];
     
-    //largestPartition will be populated initially with the EP for the case where the letter is not present in the word
-    largestPartition = [[EquivalentPartition alloc] initWithCharacter:character andIndices:nil andWords:self.remainingWordList];
-    
-    
-    //create equivalentPartitions for all cases and select the largest
-    for (NSArray* singleIndexCombination in self.combinations) {
-        EquivalentPartition *tempPartition = [[EquivalentPartition alloc] initWithCharacter:character andIndices:singleIndexCombination andWords:self.remainingWordList];
+    for (NSString* word in self.remainingWordList) {
+        //find indices that the desired characters are at
+        NSMutableArray *indicesForSingleWord = [[NSMutableArray alloc] init];
+        for (int i = 0; i < word.length; i++) {
+            if ([word characterAtIndex:i] == character) {
+                [indicesForSingleWord addObject:[[NSNumber alloc] initWithInt:i]];
+            }
+        }
         
-        //Choose the larger of the partitions
-        if (tempPartition.sizeOfPartition >= largestPartition.sizeOfPartition) {
-            largestPartition = tempPartition;
+        //check to see if the EquivalentPartition with the desired index already exists in array
+        BOOL createNewEqPartition = YES;
+        
+        for (EquivalentPartition* EP in equivalentPartitionArray) {
+            if ([self array:EP.indices hasTheSameContentsAsArray:indicesForSingleWord]) {
+                createNewEqPartition = NO;
+                
+                //add word to the equivalent partition with the correct indices
+                [EP addWord:word];
+                
+            }
+        }
+        
+        //if a new EP needs to be created, create it and add the word
+        if (createNewEqPartition) {
+            
+            EquivalentPartition *partitionToBeAdded = [[EquivalentPartition alloc] initWithCharacter:character andIndices:indicesForSingleWord];
+            //add the word to the partition
+            [partitionToBeAdded addWord:word];
+            
+            //add the partition to the array of equivalent partitions
+            [equivalentPartitionArray addObject:partitionToBeAdded];
+            
+        }
+        
+    
+    }
+    
+    
+    //find the Largest Partition in the equivalentPartition and update the remainingWordsList accordingly
+    
+    //get first equivalent partition
+    EquivalentPartition *largestPartition = [equivalentPartitionArray objectAtIndex:0];
+    
+    for (EquivalentPartition *EP in equivalentPartitionArray) {
+        if (largestPartition.sizeOfPartition < EP.sizeOfPartition) {
+            largestPartition = EP;
         }
     }
     
-    //update current state of guessed word and remaining word list.
-    for (NSNumber *indexOfChar in largestPartition.indices) {
-        [self.currentStateOfGuessedWord replaceCharactersInRange:NSMakeRange([indexOfChar integerValue], 1) withString:[NSString stringWithFormat:@"%c", character]];
-    }
+    
     
     self.remainingWordList = largestPartition.wordsInEquivalentPartition;
     
-    
-    //checking to see if character was "added" to the word
-    if (largestPartition.indices != nil) {
-        return false;
+    //BOOL to determine whether or not the character was added
+    BOOL result = NO;
+
+    //if the size of the indices partition does not equal zero, a character was added
+    if (largestPartition.indices.count != 0) {
+        result = YES;
+        
+        
+        //update current state of guessed word and remaining word list.
+        for (NSNumber *indexOfChar in largestPartition.indices) {
+            [self.currentStateOfGuessedWord replaceCharactersInRange:NSMakeRange([indexOfChar integerValue], 1) withString:[NSString stringWithFormat:@"%c", character]];
+        }
+        
     }
     
-    return true;
+    return result;
 }
 
 
@@ -164,5 +202,21 @@
     int indexOfWordToReturn = round(arc4random() % self.remainingWordList.count);
     
     return [self.remainingWordList objectAtIndex:indexOfWordToReturn];
+}
+
+-(BOOL)array:(NSArray*)array1 hasTheSameContentsAsArray:(NSArray*)array2 {
+    BOOL result = YES;
+    if (array1.count != array2.count) {
+        result = NO;
+    }else {
+        for (int i = 0; i < array1.count; i++) {
+            if ([[array1 objectAtIndex:i] integerValue] != [[array2 objectAtIndex:i] integerValue]) {
+                result = NO;
+                break;
+            }
+        }
+    }
+    
+    return result;
 }
 @end

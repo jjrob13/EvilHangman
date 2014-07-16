@@ -43,7 +43,7 @@
         
         
         //check to see if word was "added" to the word
-        if ([self.wordFinder updateListForNewCharacter:[sender.titleLabel.text characterAtIndex:0]]) {
+        if (![self.wordFinder updateListForNewCharacter:[sender.titleLabel.text characterAtIndex:0]]) {
             self.guessesRemaining--;
         }
         
@@ -82,10 +82,13 @@
     if ([segue.identifier isEqualToString:@"segueToLoss"]) {
         LossScreenViewController *dest = segue.destinationViewController;
         dest.correctWord = [self.wordFinder getRandomRemainingWord];
+        dest.fontForWord = self.onScreenWordLabel.font;
+
     }else if([segue.identifier isEqualToString:@"segueToWin"]) {
         WinScreenViewController *dest = segue.destinationViewController;
         dest.correctWord = self.wordFinder.currentStateOfGuessedWord;
         dest.remainingGuesses = self.guessesRemaining;
+        dest.fontForWord = self.onScreenWordLabel.font;
     }
 }
 @end
