@@ -1,6 +1,6 @@
 EvilHangman
 ===========
 
-iOS app that always wins at hangman
+iOS app that cheats at hangman
 
 Boot it up and see if you can win!
